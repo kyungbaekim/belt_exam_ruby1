@@ -2,6 +2,7 @@ class Song < ActiveRecord::Base
   belongs_to :user
   has_many :playlists
   validates :title, :artist, presence: true, length: { minimum: 2 }
+  validates :title, uniqueness: { :case_sensitive => false }
   validates :user_id, presence: true
 
   def song_added_count
