@@ -1,0 +1,30 @@
+<div class='wrapper'>
+  <div class='main'>
+    <div class='top'>
+      <div class='welcome'>
+        <h1>Welcome, <%= session[:user_name] %>!</h1>
+      </div>
+      <div class='menu'>
+        <a href='/songs'>Dashboard</a>&emsp;
+        <a href='/sessions' data-method='delete'>Logout</a>
+      </div>
+    </div>
+    <div class='songs_list'>
+      <h3><%= @user.full_name %>'s Playlist</h3>
+      <table>
+        <tr>
+          <th>Artist</th>
+          <th>Title</th>
+          <th>Times Added</th>
+        </tr>
+        <% @songs.each do |s| %>
+          <tr>
+            <td><%= s.artist %></a></td>
+            <td><%= s.title %></td>
+            <td><%= s.playlist_count %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

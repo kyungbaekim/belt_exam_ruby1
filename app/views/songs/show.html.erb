@@ -1,0 +1,29 @@
+<div class='wrapper'>
+  <div class='main'>
+    <div class='top'>
+      <div class='welcome'>
+        <h1>Welcome, <%= session[:user_name] %>!</h1>
+      </div>
+      <div class='menu'>
+        <a href='/songs'>Dashboard</a>&emsp;
+        <a href='/sessions' data-method='delete'>Logout</a>
+      </div>
+    </div>
+    <div class='songs_list'>
+      <h3>Others who added <%= @song.artist %> - <%= @song.title %></h3>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Times Added</th>
+        </tr>
+        <% @user_list.each do |u| %>
+          <tr>
+            <td><a href='/users/<%= u.user_id %>'><%= u.user.full_name %></a></td>
+            <td><%= u.group_by_user %></td>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

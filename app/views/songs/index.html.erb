@@ -1,0 +1,65 @@
+<div class='wrapper'>
+  <div class='main'>
+    <div class='top'>
+      <div class='welcome'>
+        <h1>Welcome, <%= session[:user_name] %>!</h1>
+      </div>
+      <div class='menu'>
+        <a href='/sessions' data-method='delete'>Logout</a>
+      </div>
+    </div>
+    <div class='songs_list'>
+      <h3>All the songs in our hub:</h3>
+      <table>
+        <tr>
+          <th>Artist</th>
+          <th>Title</th>
+          <th>No. of Times<br>Song Has Been Added</th>
+          <th>Add to Playlist</th>
+        </tr>
+        <% @songs.each do |s| %>
+          <tr>
+            <td><%= s.artist %></td>
+            <td><a href='/songs/<%= s.id %>'><%= s.title %></a></td>
+            <td><%= s.song_added_count %></td>
+            <td>
+              <form action='/playlists' method='post'>
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <input type='hidden' name='playlist[user_id]' value='<%= session[:user_id] %>'>
+                <input type='hidden' name='playlist[song_id]' value='<%= s.id %>'>
+                <input type='submit' value='Add'>
+              </form>
+              <!-- <% if s.user_id == session[:user_id] %>
+                &nbsp;<a href='/songs/<%= s.id %>' data-method='delete'><button>Delete</button></a>
+              <% end %> -->
+            </td>
+        <% end %>
+      </table>
+    </div>
+    <div class='add_song'>
+      <fieldset>
+        <legend>Add a Song</legend>
+        <form action='/songs' method='post'>
+          <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+          <input type='hidden' name='song[user_id]' value='<%= session[:user_id] %>'>
+          <table>
+            <tr>
+              <td>Title:</td><td><input type='text' name='song[title]'></td>
+              <td>Artist:</td><td><input type='text' name='song[artist]'></td>
+              <td colspan='2'><input type='submit' value='Add Song'></td>
+            </tr>
+            <% if flash[:errors] %>
+              <tr>
+                <td colspan='2'>
+                  <% flash[:errors].each do |error| %>
+                    <span><%= error %></span><br>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>

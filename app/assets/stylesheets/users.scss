@@ -1,0 +1,56 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper{
+  width: 100%;
+}
+.main{
+  width: 70%;
+  margin: 0px auto;
+}
+.register, .login{
+  display: inline-block;
+}
+.register{
+  width: 46%;
+  margin-right: 20px;
+}
+th, td{
+  padding: 5px;
+}
+th{
+  background-color: lightgray;
+}
+fieldset{
+  width: 85%;
+  margin: 0px auto;
+}
+span{
+  color: red;
+}
+.welcome, .menu{
+  display: inline-block;
+  width: 49%;
+}
+.menu{
+  text-align: right;
+}
+.songs_list{
+  width: 80%;
+  margin: 0px auto;
+}
+.songs_list table, .songs_list th, .songs_list tr, .songs_list td{
+  border: 1px solid silver;
+}
+.songs_list table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.songs_list td{
+  text-align: center;
+}
+.add_song fieldset{
+  width: 75%;
+  margin-top: 20px;
+}
